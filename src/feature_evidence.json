@@ -1,0 +1,44 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-new-additional-animation-effect-beyond-the-existing-floating-hearts-overlay-that-makes-the-valentine-page-feel-more-personal-and-integrate-it-into-the-existing-valentine-experience-flow",
+      "featureTitle": "Add a new, additional animation/effect (beyond the existing floating hearts overlay) that makes the Valentine page feel more personal, and integrate it into the existing Valentine experience flow.",
+      "files": [
+        "frontend/src/components/PersonalMomentEffect.tsx",
+        "frontend/src/components/ValentinePage.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-trigger-the-new-animation-effect-at-an-emotionally-relevant-moment-in-the-existing-user-journey-e-g-when-the-user-clicks-either-yes-or-of-course-yes-and-or-when-the-final-section-is-revealed-without-changing-the-existing-copy",
+      "featureTitle": "Trigger the new animation/effect at an emotionally relevant moment in the existing user journey (e.g., when the user clicks either “Yes ❤️” or “Of course Yes 💕”, and/or when the final section is revealed), without changing the existing copy.",
+      "files": [
+        "frontend/src/components/PersonalMomentEffect.tsx",
+        "frontend/src/components/ValentinePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

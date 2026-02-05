@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Add a more personal animation effect to the Valentine experience",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Add a new, additional animation/effect (beyond the existing floating hearts overlay) that makes the Valentine page feel more personal, and integrate it into the existing Valentine experience flow.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Everything’s ready — want to add a small animation or effect to make the experience feel even more personal?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The page includes at least one new visual animation/effect that is distinct from the current FloatingHeartsOverlay.",
+        "The new effect does not block interaction with page content (buttons, scrolling, audio control).",
+        "The new effect performs smoothly on mobile and desktop and does not cause persistent layout shift."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Trigger the new animation/effect at an emotionally relevant moment in the existing user journey (e.g., when the user clicks either “Yes ❤️” or “Of course Yes 💕”, and/or when the final section is revealed), without changing the existing copy.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Yes please"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking either proposal button triggers the new effect in addition to the existing final-section reveal + smooth scroll behavior.",
+        "All existing ValentinePage text content remains unchanged (English user-facing text stays as-is).",
+        "The final section still remains hidden on initial load and reveals only after a proposal button click."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (Shadcn UI components must be composed, not modified).",
+    "Do not edit immutable frontend hook paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+  ],
+  "nonGoals": [
+    "No backend changes (do not add Motoko methods or persistence for this request).",
+    "Do not add real-time features (no WebSockets or live messaging).",
+    "Do not introduce third-party authentication beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

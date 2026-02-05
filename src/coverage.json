@@ -1,0 +1,57 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T05:57:17.733Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-8",
+        "summary": "Add a new, additional animation/effect (beyond the existing floating hearts overlay) that makes the Valentine page feel more personal, and integrate it into the existing Valentine experience flow.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/PersonalMomentEffect.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/ValentinePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/PersonalMomentEffect.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/ValentinePage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Trigger the new animation/effect at an emotionally relevant moment in the existing user journey (e.g., when the user clicks either “Yes ❤️” or “Of course Yes 💕”, and/or when the final section is revealed), without changing the existing copy.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ValentinePage.tsx",
+          "frontend/src/components/PersonalMomentEffect.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ValentinePage.tsx",
+          "frontend/src/components/PersonalMomentEffect.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/PersonalMomentEffect.tsx",
+    "frontend/src/components/ValentinePage.tsx",
+    "frontend/src/index.css",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "frontend/src/App.tsx": "Main application entry component that renders the ValentinePage component.",
+  "frontend/src/components/ValentinePage.tsx": "Single-page Valentine's Day experience with sections for intro message, photo gallery, love text, proposal buttons, hidden final reveal section, background music control, and footer with smooth scroll behavior; now includes PersonalMomentEffect triggered on proposal button clicks.",
+  "frontend/src/components/FloatingHeartsOverlay.tsx": "Animated overlay component that renders seven floating heart emojis with varied positions and animation delays, using pointer-events-none to avoid blocking interactions.",
+  "frontend/src/components/PhotoGallery.tsx": "Responsive photo gallery component displaying two uploaded couple photos and a placeholder tile for a third photo, with rounded corners and shadow effects.",
+  "frontend/src/index.css": "Global styles with romantic pink/rose gradient background, OKLCH color system for light/dark modes, custom typography using Georgia serif font, floating hearts animation keyframes, and new personal moment effect animations (radial burst, sparkles, heart burst) with reduced-motion support.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with romantic color palette, Georgia serif font family, and custom shadow utilities.",
+  "frontend/src/components/PersonalMomentEffect.tsx": "A trigger-based animation overlay component that displays sparkles and a radial heart burst effect when activated, self-cleaning after 3 seconds with GPU-optimized transforms and pointer-events-none to avoid blocking interactions."
+}

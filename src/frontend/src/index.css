@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        /* Light pink/rose romantic theme */
+        --background: 0.985 0.02 15;
+        --foreground: 0.25 0.08 15;
+        --card: 1 0.015 15;
+        --card-foreground: 0.25 0.08 15;
+        --popover: 1 0.015 15;
+        --popover-foreground: 0.25 0.08 15;
+        --primary: 0.55 0.18 15;
+        --primary-foreground: 0.99 0.01 15;
+        --secondary: 0.97 0.025 15;
+        --secondary-foreground: 0.35 0.08 15;
+        --muted: 0.96 0.02 15;
+        --muted-foreground: 0.55 0.05 15;
+        --accent: 0.92 0.04 15;
+        --accent-foreground: 0.35 0.08 15;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.985 0 0;
+        --border: 0.90 0.03 15;
+        --input: 0.90 0.03 15;
+        --ring: 0.65 0.12 15;
+        --chart-1: 0.646 0.222 41.116;
+        --chart-2: 0.6 0.118 184.704;
+        --chart-3: 0.398 0.07 227.392;
+        --chart-4: 0.828 0.189 84.429;
+        --chart-5: 0.769 0.188 70.08;
+    }
+
+    .dark {
+        --background: 0.20 0.05 15;
+        --foreground: 0.98 0.015 15;
+        --card: 0.25 0.06 15;
+        --card-foreground: 0.98 0.015 15;
+        --popover: 0.25 0.06 15;
+        --popover-foreground: 0.98 0.015 15;
+        --primary: 0.75 0.12 15;
+        --primary-foreground: 0.20 0.05 15;
+        --secondary: 0.30 0.06 15;
+        --secondary-foreground: 0.98 0.015 15;
+        --muted: 0.30 0.06 15;
+        --muted-foreground: 0.70 0.04 15;
+        --accent: 0.40 0.08 15;
+        --accent-foreground: 0.98 0.015 15;
+        --destructive: 0.704 0.191 22.216;
+        --destructive-foreground: 0.98 0.015 15;
+        --border: 0.35 0.06 15;
+        --input: 0.35 0.06 15;
+        --ring: 0.60 0.10 15;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-gradient-to-b from-[#fff0f3] via-[#ffe4e9] to-[#ffccd5] text-foreground;
+        font-family: Georgia, 'Times New Roman', serif;
+        min-height: 100vh;
+    }
+}
+
+@layer components {
+    .section-padding {
+        @apply py-20 px-5 md:py-24 lg:py-28;
+    }
+
+    .heading-primary {
+        @apply text-4xl md:text-5xl lg:text-6xl font-bold text-rose-700 mb-6;
+    }
+
+    .heading-secondary {
+        @apply text-3xl md:text-4xl lg:text-5xl font-semibold text-rose-600;
+    }
+
+    .text-romantic {
+        @apply text-lg md:text-xl lg:text-2xl leading-relaxed text-rose-900/90 max-w-3xl mx-auto;
+    }
+
+    .button-romantic {
+        @apply bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+    }
+
+    /* Gallery Styles */
+    .gallery-grid {
+        @apply flex flex-wrap justify-center gap-6 md:gap-8;
+    }
+
+    .gallery-item {
+        @apply w-full sm:w-72 md:w-80 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300;
+    }
+
+    .gallery-image {
+        @apply w-full h-full object-cover aspect-square;
+    }
+
+    .gallery-placeholder {
+        @apply bg-gradient-to-br from-rose-100 to-pink-100 flex items-center justify-center aspect-square;
+    }
+
+    .placeholder-content {
+        @apply flex flex-col items-center justify-center p-8 text-center;
+    }
+
+    /* Floating Hearts Animation */
+    .floating-hearts-container {
+        @apply fixed inset-0 pointer-events-none z-0 overflow-hidden;
+    }
+
+    .floating-heart {
+        @apply fixed text-2xl opacity-70;
+        bottom: -20px;
+        animation: floatUp 8s linear infinite;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-110vh) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    /* Personal Moment Effect */
+    .personal-moment-overlay {
+        @apply fixed inset-0 pointer-events-none z-40 overflow-hidden;
+    }
+
+    .radial-burst {
+        @apply absolute inset-0;
+        background: radial-gradient(circle at center, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+        animation: radialPulse 2s ease-out forwards;
+    }
+
+    @keyframes radialPulse {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+
+    .sparkle {
+        @apply absolute text-xl;
+        animation: sparkleAnimation 1.5s ease-out forwards;
+        will-change: transform, opacity;
+    }
+
+    @keyframes sparkleAnimation {
+        0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5) rotate(180deg);
+            opacity: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .sparkle {
+            animation: sparkleAnimationReduced 1.5s ease-out forwards;
+        }
+        
+        @keyframes sparkleAnimationReduced {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    }
+
+    .center-heart-burst {
+        @apply absolute inset-0 flex items-center justify-center;
+    }
+
+    .burst-heart {
+        @apply absolute text-4xl;
+        animation: heartBurst 2s ease-out forwards;
+        will-change: transform, opacity;
+    }
+
+    .burst-heart-1 {
+        animation-delay: 0s;
+        --burst-angle: 0deg;
+    }
+
+    .burst-heart-2 {
+        animation-delay: 0.1s;
+        --burst-angle: 45deg;
+    }
+
+    .burst-heart-3 {
+        animation-delay: 0.2s;
+        --burst-angle: 90deg;
+    }
+
+    .burst-heart-4 {
+        animation-delay: 0.3s;
+        --burst-angle: 135deg;
+    }
+
+    .burst-heart-5 {
+        animation-delay: 0.4s;
+        --burst-angle: 180deg;
+    }
+
+    .burst-heart-6 {
+        animation-delay: 0.5s;
+        --burst-angle: 225deg;
+    }
+
+    .burst-heart-7 {
+        animation-delay: 0.6s;
+        --burst-angle: 270deg;
+    }
+
+    .burst-heart-8 {
+        animation-delay: 0.7s;
+        --burst-angle: 315deg;
+    }
+
+    @keyframes heartBurst {
+        0% {
+            transform: translate(0, 0) scale(0) rotate(0deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: 
+                translate(
+                    calc(cos(var(--burst-angle)) * 200px),
+                    calc(sin(var(--burst-angle)) * 200px)
+                )
+                scale(1.5)
+                rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .burst-heart {
+            animation: heartBurstReduced 2s ease-out forwards;
+        }
+        
+        @keyframes heartBurstReduced {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        .radial-burst {
+            animation: radialPulseReduced 2s ease-out forwards;
+        }
+        
+        @keyframes radialPulseReduced {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+@layer utilities {
+    .shadow-3xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    }
+}

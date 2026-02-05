@@ -1,0 +1,54 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Personal moment animation effect for the Valentine page",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "summary": "Add an additional personal-feeling animation/effect (distinct from FloatingHeartsOverlay) and integrate it into the Valentine page without blocking interactions or causing layout shift.",
+      "acceptanceCriteria": [
+        "The page includes at least one new visual animation/effect that is distinct from the current FloatingHeartsOverlay.",
+        "The new effect does not block interaction with page content (buttons, scrolling, audio control).",
+        "The new effect performs smoothly on mobile and desktop and does not cause persistent layout shift."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PersonalMomentEffect.tsx",
+          "operation": "create",
+          "description": "Create a lightweight, fixed-position, pointer-events-none visual effect component (e.g., a short-lived sparkle/burst overlay) that can be triggered on demand and self-cleans after its animation duration to avoid persistent DOM work."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS classes/keyframes for the new PersonalMomentEffect (fixed overlay container, non-interactive via pointer-events-none, GPU-friendly transforms/opacity animations, respects reduced-motion) to ensure smooth performance and no layout shift."
+        },
+        {
+          "path": "frontend/src/components/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Integrate the new PersonalMomentEffect into the existing Valentine page layout (rendered as a non-blocking overlay similar to FloatingHeartsOverlay but visually distinct) so it can be triggered as part of the experience flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Trigger the new animation/effect at an emotionally relevant moment (proposal button click and/or final reveal) while keeping all existing copy and reveal behavior unchanged.",
+      "acceptanceCriteria": [
+        "Clicking either proposal button triggers the new effect in addition to the existing final-section reveal + smooth scroll behavior.",
+        "All existing ValentinePage text content remains unchanged (English user-facing text stays as-is).",
+        "The final section still remains hidden on initial load and reveals only after a proposal button click."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Update the proposal button click handler to (1) preserve existing behavior (setShowFinal + smooth scroll) and (2) additionally trigger PersonalMomentEffect (e.g., by incrementing a trigger counter/key or toggling a transient state) without changing any user-facing text."
+        },
+        {
+          "path": "frontend/src/components/PersonalMomentEffect.tsx",
+          "operation": "modify",
+          "description": "Support an explicit trigger signal (e.g., a prop that changes per click) so the effect reliably replays on each proposal-button click and ends automatically after a short duration."
+        }
+      ]
+    }
+  ]
+}
