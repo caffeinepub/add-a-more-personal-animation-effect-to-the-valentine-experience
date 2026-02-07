@@ -1,53 +1,55 @@
 {
   "kind": "build_request",
-  "title": "Add a more personal animation effect to the Valentine experience",
+  "title": "Add custom domain setup flow for the deployed site",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-8",
-      "text": "Add a new, additional animation/effect (beyond the existing floating hearts overlay) that makes the Valentine page feel more personal, and integrate it into the existing Valentine experience flow.",
+      "id": "REQ-1",
+      "text": "Add a Custom Domain setup screen/section in the frontend that lets the user enter (a) their desired domain (e.g., example.com) and (b) the deployed frontend canister ID, and then displays clear step-by-step instructions for configuring DNS to point the domain to the Internet Computer-hosted site.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Everything’s ready — want to add a small animation or effect to make the experience feel even more personal?"
+          "Your final site is ready to share now — want to add a custom domain next?",
+          "Yes"
         ]
       },
       "acceptanceCriteria": [
-        "The page includes at least one new visual animation/effect that is distinct from the current FloatingHeartsOverlay.",
-        "The new effect does not block interaction with page content (buttons, scrolling, audio control).",
-        "The new effect performs smoothly on mobile and desktop and does not cause persistent layout shift."
+        "A visible navigation entry or in-page section labeled \"Custom Domain\" exists in the app.",
+        "The user can input a domain and a canister ID.",
+        "The UI renders step-by-step DNS guidance after inputs are provided, written in English, including record types and placeholders populated with the user-provided values.",
+        "The UI includes a short \"Verify\" checklist describing how the user can confirm the domain is live (e.g., wait for DNS propagation, test in browser)."
       ]
     },
     {
-      "id": "REQ-9",
-      "text": "Trigger the new animation/effect at an emotionally relevant moment in the existing user journey (e.g., when the user clicks either “Yes ❤️” or “Of course Yes 💕”, and/or when the final section is revealed), without changing the existing copy.",
+      "id": "REQ-2",
+      "text": "Ensure the app continues to work correctly when served from a custom domain by avoiding hard-coded origins and keeping share-link functionality based on the current browser URL.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-4"
         ],
         "quotes": [
-          "Yes please"
+          "want to add a custom domain next?"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking either proposal button triggers the new effect in addition to the existing final-section reveal + smooth scroll behavior.",
-        "All existing ValentinePage text content remains unchanged (English user-facing text stays as-is).",
-        "The final section still remains hidden on initial load and reveals only after a proposal button click."
+        "Share/copy-link behavior uses the current page URL at runtime (works on both the default canister URL and a custom domain).",
+        "No hard-coded canister-domain hostnames are introduced into user-facing link generation."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (Shadcn UI components must be composed, not modified).",
-    "Do not edit immutable frontend hook paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+    "Do not edit files under frontend/src/components/ui (compose them instead).",
+    "Do not edit immutable hook/bootstrap files listed in SYSTEM_CONTEXT (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
+    "Backend must remain single-actor (all Motoko logic in backend/main.mo); only add migration.mo if an existing stable state schema must change."
   ],
   "nonGoals": [
-    "No backend changes (do not add Motoko methods or persistence for this request).",
-    "Do not add real-time features (no WebSockets or live messaging).",
-    "Do not introduce third-party authentication beyond Internet Identity."
+    "Purchasing a domain or performing registrar actions automatically.",
+    "Automatically detecting the user’s registrar/DNS provider UI.",
+    "Implementing non-Internet-Identity third-party authentication."
   ],
   "imageRequirements": {
     "required": [],

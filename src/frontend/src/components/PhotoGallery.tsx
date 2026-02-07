@@ -15,13 +15,12 @@ export default function PhotoGallery() {
           className="gallery-image"
         />
       </div>
-      <div className="gallery-item gallery-placeholder">
-        <div className="placeholder-content">
-          <span className="text-6xl mb-4">📷</span>
-          <p className="text-rose-600 font-serif text-lg">
-            Add a third photo
-          </p>
-        </div>
+      <div className="gallery-item">
+        <img
+          src="/assets/generated/IMG_5240.jpeg"
+          alt="A perfect autumn day together under vibrant red leaves"
+          className="gallery-image"
+        />
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Settings } from 'lucide-react';
 import FloatingHeartsOverlay from './FloatingHeartsOverlay';
 import PersonalMomentEffect from './PersonalMomentEffect';
 import PhotoGallery from './PhotoGallery';
+import ShareLinkButton from './ShareLinkButton';
+import CustomDomainSection from './CustomDomainSection';
 import { Button } from './ui/button';
 
 export default function ValentinePage() {
@@ -56,13 +58,31 @@ export default function ValentinePage() {
     }, 100);
   };
 
+  const scrollToCustomDomain = () => {
+    const section = document.getElementById('custom-domain');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <FloatingHeartsOverlay />
       <PersonalMomentEffect trigger={effectTrigger} />
       
-      {/* Background music control */}
-      <div className="fixed top-6 right-6 z-50">
+      {/* Top controls */}
+      <div className="fixed top-6 right-6 z-50 flex gap-3">
+        <Button
+          onClick={scrollToCustomDomain}
+          variant="outline"
+          size="icon"
+          className="bg-white/90 backdrop-blur-sm border-rose-200 hover:bg-rose-50 hover:border-rose-300 shadow-lg"
+          aria-label="Custom Domain Setup"
+          title="Custom Domain Setup"
+        >
+          <Settings className="h-5 w-5 text-rose-600" />
+        </Button>
+        <ShareLinkButton />
         <Button
           onClick={toggleAudio}
           variant="outline"
@@ -184,6 +204,9 @@ export default function ValentinePage() {
           </div>
         </section>
       )}
+
+      {/* Custom Domain Section */}
+      <CustomDomainSection />
 
       {/* Footer */}
       <footer className="relative z-10 py-16 text-center">

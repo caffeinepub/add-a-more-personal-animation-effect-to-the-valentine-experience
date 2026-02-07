@@ -1,52 +1,47 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Personal moment animation effect for the Valentine page",
+  "title": "Custom domain setup UI and runtime-safe share links",
   "requirements": [
     {
-      "id": "REQ-8",
-      "summary": "Add an additional personal-feeling animation/effect (distinct from FloatingHeartsOverlay) and integrate it into the Valentine page without blocking interactions or causing layout shift.",
+      "id": "REQ-1",
+      "summary": "Add an in-app \"Custom Domain\" section where users enter a domain + frontend canister ID and receive step-by-step DNS + verification guidance.",
       "acceptanceCriteria": [
-        "The page includes at least one new visual animation/effect that is distinct from the current FloatingHeartsOverlay.",
-        "The new effect does not block interaction with page content (buttons, scrolling, audio control).",
-        "The new effect performs smoothly on mobile and desktop and does not cause persistent layout shift."
+        "A visible navigation entry or in-page section labeled \"Custom Domain\" exists in the app.",
+        "The user can input a domain and a canister ID.",
+        "The UI renders step-by-step DNS guidance after inputs are provided, written in English, including record types and placeholders populated with the user-provided values.",
+        "The UI includes a short \"Verify\" checklist describing how the user can confirm the domain is live (e.g., wait for DNS propagation, test in browser)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/PersonalMomentEffect.tsx",
+          "path": "frontend/src/components/CustomDomainSection.tsx",
           "operation": "create",
-          "description": "Create a lightweight, fixed-position, pointer-events-none visual effect component (e.g., a short-lived sparkle/burst overlay) that can be triggered on demand and self-cleans after its animation duration to avoid persistent DOM work."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add CSS classes/keyframes for the new PersonalMomentEffect (fixed overlay container, non-interactive via pointer-events-none, GPU-friendly transforms/opacity animations, respects reduced-motion) to ensure smooth performance and no layout shift."
+          "description": "Create a reusable Custom Domain section component that collects (1) desired domain and (2) deployed frontend canister ID, then conditionally renders clear, English step-by-step DNS setup instructions (record types, host/name/value fields) with placeholders populated from the user inputs, plus a short \"Verify\" checklist. Use shadcn-ui components (e.g., Button/Input/Label/Card) to keep styling consistent; Verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/components/ValentinePage.tsx",
           "operation": "modify",
-          "description": "Integrate the new PersonalMomentEffect into the existing Valentine page layout (rendered as a non-blocking overlay similar to FloatingHeartsOverlay but visually distinct) so it can be triggered as part of the experience flow."
+          "description": "Wire the CustomDomainSection into the existing page as a clearly labeled in-page section titled \"Custom Domain\" and add a visible navigation affordance (e.g., a top fixed button/link) that scrolls to or reveals the section so it is easily discoverable without adding new routes. Use existing shadcn-ui Button for the navigation control; Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-9",
-      "summary": "Trigger the new animation/effect at an emotionally relevant moment (proposal button click and/or final reveal) while keeping all existing copy and reveal behavior unchanged.",
+      "id": "REQ-2",
+      "summary": "Keep link sharing and any displayed share URLs based on the current runtime browser URL (no hard-coded origins), ensuring compatibility on custom domains.",
       "acceptanceCriteria": [
-        "Clicking either proposal button triggers the new effect in addition to the existing final-section reveal + smooth scroll behavior.",
-        "All existing ValentinePage text content remains unchanged (English user-facing text stays as-is).",
-        "The final section still remains hidden on initial load and reveals only after a proposal button click."
+        "Share/copy-link behavior uses the current page URL at runtime (works on both the default canister URL and a custom domain).",
+        "No hard-coded canister-domain hostnames are introduced into user-facing link generation."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/ValentinePage.tsx",
-          "operation": "modify",
-          "description": "Update the proposal button click handler to (1) preserve existing behavior (setShowFinal + smooth scroll) and (2) additionally trigger PersonalMomentEffect (e.g., by incrementing a trigger counter/key or toggling a transient state) without changing any user-facing text."
+          "path": "frontend/src/lib/runtimeUrl.ts",
+          "operation": "create",
+          "description": "Add a small helper that returns the current page URL at runtime (derived from window.location) for use in any share/copy functionality, avoiding any hard-coded origins/hostnames."
         },
         {
-          "path": "frontend/src/components/PersonalMomentEffect.tsx",
+          "path": "frontend/src/components/ShareLinkButton.tsx",
           "operation": "modify",
-          "description": "Support an explicit trigger signal (e.g., a prop that changes per click) so the effect reliably replays on each proposal-button click and ends automatically after a short duration."
+          "description": "Refactor share/copy-link logic to use the runtime URL helper (computed inside the click handler) and ensure no hard-coded canister hostnames or fixed origins are used anywhere in link generation. Keep existing UX (copied feedback) intact. Use the existing shadcn-ui Button composition only (do not edit ui components); Verify the component's usage instructions before implementing."
         }
       ]
     }

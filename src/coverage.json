@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T05:57:17.733Z",
+  "generatedAt": "2026-02-06T06:53:51.849Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,44 +11,42 @@
     "implemented": 2,
     "items": [
       {
-        "id": "REQ-8",
-        "summary": "Add a new, additional animation/effect (beyond the existing floating hearts overlay) that makes the Valentine page feel more personal, and integrate it into the existing Valentine experience flow.",
+        "id": "REQ-1",
+        "summary": "Add a Custom Domain setup screen/section in the frontend that lets the user enter (a) their desired domain (e.g., example.com) and (b) the deployed frontend canister ID, and then displays clear step-by-step instructions for configuring DNS to point the domain to the Internet Computer-hosted site.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/PersonalMomentEffect.tsx",
-          "frontend/src/index.css",
+          "frontend/src/components/CustomDomainSection.tsx",
           "frontend/src/components/ValentinePage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/PersonalMomentEffect.tsx",
-          "frontend/src/index.css",
+          "frontend/src/components/CustomDomainSection.tsx",
           "frontend/src/components/ValentinePage.tsx"
         ]
       },
       {
-        "id": "REQ-9",
-        "summary": "Trigger the new animation/effect at an emotionally relevant moment in the existing user journey (e.g., when the user clicks either “Yes ❤️” or “Of course Yes 💕”, and/or when the final section is revealed), without changing the existing copy.",
+        "id": "REQ-2",
+        "summary": "Ensure the app continues to work correctly when served from a custom domain by avoiding hard-coded origins and keeping share-link functionality based on the current browser URL.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/ValentinePage.tsx",
-          "frontend/src/components/PersonalMomentEffect.tsx"
+          "frontend/src/lib/runtimeUrl.ts",
+          "frontend/src/components/ShareLinkButton.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/ValentinePage.tsx",
-          "frontend/src/components/PersonalMomentEffect.tsx"
+          "frontend/src/lib/runtimeUrl.ts",
+          "frontend/src/components/ShareLinkButton.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/PersonalMomentEffect.tsx",
+    "frontend/src/components/CustomDomainSection.tsx",
+    "frontend/src/components/ShareLinkButton.tsx",
     "frontend/src/components/ValentinePage.tsx",
-    "frontend/src/index.css",
+    "frontend/src/lib/runtimeUrl.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
